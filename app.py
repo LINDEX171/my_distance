@@ -47,8 +47,6 @@ def already_calculated():
 
 @app.route('/api/distance', methods=['POST'])
 def calculate():
-    if not request.json:
-        return jsonify({'error': 'Corps JSON manquant'}), 400
     try:
         start_point = parse_point(request.json['start_point'])
         end_point = parse_point(request.json['end_point'])

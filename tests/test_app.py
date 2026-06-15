@@ -106,10 +106,10 @@ class TestAPI:
         assert response.status_code == 400
         assert 'error' in response.get_json()
 
-    def test_sans_corps_json_retourne_400(self, client):
+    def test_sans_corps_json_retourne_415(self, client):
         response = client.post('/api/distance', data='pas du json',
                                content_type='text/plain')
-        assert response.status_code == 400
+        assert response.status_code == 415
 
     def test_calcul_valide_sauvegarde_dans_historique(self, client):
         client.post('/api/distance', json={'start_point': '0,0', 'end_point': '3,4'})
