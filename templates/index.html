@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<head></head>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Calcul de distance</title>
+</head>
 <body>
-    <p>Votre resultat est {{ result }}</p>
-    <h1>Distance</h1>
+    <h1>Calcul de distance</h1>
     <form method="POST" action="/">
-        <input type="text" name="start_point" id="start_point" placeholder="x,y">
-        <input type="text" name="end_point" id="end_point" placeholder="x,y">
-        <input type="submit" value="soumettre">
+        <label for="start_point">Point de départ (x,y)</label>
+        <input type="text" name="start_point" id="start_point" placeholder="ex: 2,5">
+        <label for="end_point">Point d'arrivée (x,y)</label>
+        <input type="text" name="end_point" id="end_point" placeholder="ex: 1,6">
+        <input type="submit" value="Calculer">
     </form>
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+    {% if result %}
+        <p>Distance entre {{ result.start_point }} et {{ result.end_point }} : {{ result.result_distance }}</p>
+    {% endif %}
 </body>
 </html>
