@@ -1,0 +1,12 @@
+[project]
+name = "my-distance"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "flask>=3.1.3",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
