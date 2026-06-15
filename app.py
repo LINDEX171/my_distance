@@ -18,18 +18,13 @@ def html_calculate():
         startPoint = start
         result_tmp = sqrt((eNd[1] - start[1])**2 + (eNd[0] - startPoint[0])**2)
         EndPoint = eNd
-        result =             {
+        result = {
                     'requested_at': datetime.now(),
                     'result_distance': result_tmp,
                     'start_point': startPoint,
                     'end_point': EndPoint
                 }
-        distances.append({
-                    'requested_at': datetime.now(),
-                    'result_distance': result_tmp,
-                    'start_point': startPoint,
-                    'end_point': EndPoint
-                })    
+        distances.append(result)
         return render_template('index.html', result=result)
 
 @app.route('/api')
@@ -45,11 +40,9 @@ def already_calculated():
                     'start_point': x['start_point'],
                     'end_point': x['end_point']        
     }, distances))
-    end = datetime.now()
     return result
-    print(f'result given in {end - starttime} secondes')
 
-@app.route('/api/distance', methods=['POST', 'GET', 'PUT'])
+@app.route('/api/distance', methods=['POST'])
 def Calculate():
     startPoint = request.json['start_point']
     startPoint = list(map(lambda y: int(y), request.json['start_point'].split(',')[0:2]))
